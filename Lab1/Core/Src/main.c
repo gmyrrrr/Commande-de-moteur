@@ -406,10 +406,9 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
   }
 
   counter++;
-  uint32_t adcValue = resultats[0];
 
-
-  TIM1->CCR1 = adcValue*PERIPWM/4095;
+  TIM1->CCR1 = (uint32_t)(resultats[0]*PERIPWM>>12);
+  TIM1->CCR2 = (uint32_t)(resultats[0]*PERIPWM>>12);
 
 }
 /* USER CODE END 4 */
